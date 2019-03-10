@@ -56,7 +56,7 @@ h1, h2, h3, h4, h5, h6 {
 h1 {
     font-size: xx-large;
     text-transform: uppercase;
-    font-weight: normal;
+    font-weight: bold;
 }
 
 img {
@@ -65,10 +65,20 @@ img {
 
 a {
     color: #084974;
+    text-decoration: none;
+    box-shadow: none;
+    -webkit-transition: 0.3s ease;
+    -o-transition: 0.3s ease;
+    transition: 0.3s ease;
 }
 
-a:active {
-    color: rgba(0, 167, 231, 1);
+a:hover {
+    color: #119848;
+    -webkit-box-shadow: inset 0 -2px 0 #119848;
+    box-shadow: inset 0 -2px 0 #119848;
+    -webkit-transition: 0.3s ease;
+    -o-transition: 0.3s ease;
+    transition: 0.3s ease;
 }
 
 h1 > a, h2 > a, h3 > a, h4 > a, h5 > a, h6 > a {
@@ -97,15 +107,17 @@ h1 > a, h2 > a, h3 > a, h4 > a, h5 > a, h6 > a {
 
 .nav-menu-container {
     width: 100%;
+    margin: 0.5rem;
     display: flex;
     flex-flow: row nowrap;
     font-family: 'nexa';
     text-transform: uppercase;
     color: black;
+    font-weight: bold;
 }
 
 .nav-home-container {
-    flex: 1 0 auto;
+    flex: 0 0 auto;
 }
 
 .site-logo-container {
@@ -114,30 +126,31 @@ h1 > a, h2 > a, h3 > a, h4 > a, h5 > a, h6 > a {
 }
 
 .nav-menu {
+    position: relative;
     display: flex;
     flex-flow: row nowrap;
-    flex: 0 0 auto;
-    margin: 1.25rem 0;
+    flex: 1 0 auto;
+    margin: 0 1rem;
     padding: 0;
     list-style-type: none;
 }
 
-.nav-menu > .menu-item {
-    position: relative;
-    line-height: 3.5rem;
-}
-
 .nav-menu > .menu-item > a {
     font-size: large;
-    line-height: 3.5rem;
+    line-height: 4.5rem;
+    border-bottom: 1px solid white;
 }
 
-.menu-item:hover {
-    background-color: rgba(0, 0, 0, 0.75);
-    color: white;
-}
 .menu-item:hover > a {
-    color: white;
+    color: #119848;
+}
+
+.menu-item:hover > a:after {
+    content: ' ';
+    z-index: 1000;
+    width: 100%;
+    height: 1rem;
+    background: black;
 }
 
 .nav-home,
@@ -150,39 +163,51 @@ h1 > a, h2 > a, h3 > a, h4 > a, h5 > a, h6 > a {
 .sub-menu {
     display: none;
     position: absolute;
-    top: 100%;
-    left: 50%;
+    top: 4rem;
+    right: 0;
     margin: 0;
     padding: 0;
+    border-top: 1px solid #95c93e;
+    flex-flow: row-reverse;
     list-style-type: none;
-    transform: translateX(-50%);
-    background: rgba(0, 0, 0, 0.75);
     text-align: center;
 }
 
+.nav-menu > .menu-item:nth-child(1) {
+    flex: 1 0 auto;
+    text-align: right;
+}
+
 .sub-menu > .menu-item > a {
-    padding: 0.25rem;
-    color: white;
-    line-height: auto;
+    padding: 0.75rem;
 }
 
 .nav-home:focus,
 .nav-home:hover,
 .menu-item > a:focus,
 .menu-item > a:hover {
-    border-color: #a00;
-    color: rgba(0, 167, 231, 0.7);
-    background: black;
+    color: #119848;
+    -webkit-box-shadow: none;
+    box-shadow: none;
 }
 
 a:focus ~ .sub-menu,
 .menu-item:focus-within > .sub-menu,
 .menu-item:hover > .sub-menu {
-    display: block;
+    display: flex;
 }
 
 .sub-menu > .menu-item > a {
-    width: 14rem;
+}
+
+.take-action-widget > ul {
+    padding: 0;
+    list-style-type: none;
+    font-size: large;
+}
+
+.take-action-widget > ul > li {
+    margin: 0.5rem 0;
 }
 
 /*
@@ -199,8 +224,11 @@ a:focus ~ .sub-menu,
     margin-top: 1rem;
 }
 
+.page-header > h1,
 .single > .post-header > h1 {
     margin-bottom: 0.25rem;
+    border-bottom: 3px solid #95c93e;
+    border-image: linear-gradient(to right, white, #95c93e 25% 75%, white) 5;
 }
 
 .back-to-list {
@@ -212,7 +240,13 @@ a:focus ~ .sub-menu,
 }
 
 .post {
-    margin: 0 2rem 4rem;
+    padding: 0 2rem 1rem;
+    margin: 0 0 3rem;
+}
+
+.post-list > .post {
+    border-bottom: 1px solid #95c93e;
+    border-image: linear-gradient(to right, white, #95c93e 25% 75%, white) 5;
 }
 
 .post-header {
@@ -221,15 +255,7 @@ a:focus ~ .sub-menu,
 }
 
 .post-header > h1 {
-    font-size: x-large;
     margin-bottom: 0;
-}
-
-.post-divider {
-    width: 85%;
-    margin: 2rem 0;
-    border: none;
-    border-top: 1px solid #ddd;
 }
 
 .single .post-main {
@@ -257,6 +283,7 @@ a:focus ~ .sub-menu,
     text-align: right;
 }
 
+
 /**
  * Pages
  */
@@ -280,6 +307,35 @@ a:focus ~ .sub-menu,
     width: 12rem;
     margin: 0 2rem;
     background: #aaf;
+}
+
+.home-page-title {
+    font-weight: normal;
+    text-transform: uppercase;
+}
+
+/*
+ * Atomic Blocks post grid
+ */
+.ab-block-post-grid .is-list h2.ab-block-post-grid-title {
+    font-size: 1.5rem;
+    font-weight: normal;
+}
+
+.ab-block-post-grid h2 > a {
+    color: black;
+}
+
+.ab-block-post-grid h2 > a:hover,
+.ab-text-link:hover {
+    color: #119848;
+}
+
+.ab-block-post-grid h2 > a:hover {
+    color: #119848;
+    transition: 0.3s ease;
+    -webkit-box-shadow: inset 0 -2px 0 #119848;
+    box-shadow: inset 0 -2px 0 #119848;
 }
 
 /*
@@ -367,7 +423,12 @@ a:focus ~ .sub-menu,
     }
 }
 
-#main-header:after {
-    content: ' ';
-    background-image: url('https://wordpress.43rddemocrats.org/log.gif');
+.ab-block-post-grid h2 > a:active,
+a:active {
+    color: #95c93e;
+    -webkit-box-shadow: inset 0 -2px 0 #95c93e;
+    box-shadow: inset 0 -2px 0 #95c93e;
+    -webkit-transition: 0.3s ease;
+    -o-transition: 0.3s ease;
+    transition: 0.3s ease;
 }

@@ -1,6 +1,5 @@
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
     <header class="post-header">
-        <hr class="post-divider" />
         <h1><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h1>
         <p class="post-date"><?php the_date(); ?></p>
     </header>
