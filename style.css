@@ -80,21 +80,11 @@ h1 > a, h2 > a, h3 > a, h4 > a, h5 > a, h6 > a {
  */
 #main-header {
     width: 100%;
-    margin-top: 2.5rem;
-    background-color: #00a7e7;
-}
-
-.site-logo-container {
-    background: #00a7e7 url('img/Skyline.png') no-repeat center;
-    background-position-y: 25px;
-    height: 300px;
 }
 
 .custom-logo {
-    width: 100%;
-    max-width: 1000px;
+    width: 400px;
     height: auto;
-    margin: 0 auto;
 }
 
 #main {
@@ -106,40 +96,54 @@ h1 > a, h2 > a, h3 > a, h4 > a, h5 > a, h6 > a {
 }
 
 .nav-menu-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
+    width: 100%;
     display: flex;
     flex-flow: row nowrap;
-    background: rgba(0, 0, 0, 0.75);
     font-family: 'nexa';
     text-transform: uppercase;
+    color: black;
 }
 
 .nav-home-container {
     flex: 1 0 auto;
 }
 
+.site-logo-container {
+    height: 6rem;
+    width: auto;
+}
 
 .nav-menu {
     display: flex;
     flex-flow: row nowrap;
     flex: 0 0 auto;
-    margin: 0;
+    margin: 1.25rem 0;
     padding: 0;
     list-style-type: none;
 }
 
 .nav-menu > .menu-item {
     position: relative;
+    line-height: 3.5rem;
+}
+
+.nav-menu > .menu-item > a {
+    font-size: large;
+    line-height: 3.5rem;
+}
+
+.menu-item:hover {
+    background-color: rgba(0, 0, 0, 0.75);
+    color: white;
+}
+.menu-item:hover > a {
+    color: white;
 }
 
 .nav-home,
 .menu-item > a {
     display: inline-block;
     padding: 0.75rem;
-    color: #fff;
     text-decoration: none;
 }
 
@@ -147,20 +151,28 @@ h1 > a, h2 > a, h3 > a, h4 > a, h5 > a, h6 > a {
     display: none;
     position: absolute;
     top: 100%;
-    left: 0;
+    left: 50%;
     margin: 0;
     padding: 0;
     list-style-type: none;
+    transform: translateX(-50%);
     background: rgba(0, 0, 0, 0.75);
+    text-align: center;
+}
+
+.sub-menu > .menu-item > a {
+    padding: 0.25rem;
+    color: white;
+    line-height: auto;
 }
 
 .nav-home:focus,
 .nav-home:hover,
 .menu-item > a:focus,
 .menu-item > a:hover {
-    background: #000;
+    border-color: #a00;
     color: rgba(0, 167, 231, 0.7);
-    text-decoration: underline;
+    background: black;
 }
 
 a:focus ~ .sub-menu,
