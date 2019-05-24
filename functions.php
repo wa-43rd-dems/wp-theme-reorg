@@ -1,6 +1,7 @@
 <?php
 require_once('menus.php');
 require_once('posts.php');
+require_once('customizer.php');
 
 function reorg_try($cond, $fn, $else_fn = false) {
     if ($cond) {
@@ -21,17 +22,6 @@ function reorg_get_posts_page_name() {
     return esc_html(apply_filters('the_title', $post->post_title, $post->ID));
 }
 
-function add_actions($tag, $hook_names) {
-    foreach ($hook_names as $hook) {
-        add_action($tag, $hook);
-    }
-}
-
-// Register menus.
-function reorg_register_nav_menus() {
-    register_nav_menu('top-nav', 'Top Navigation Menu');
-}
-
 // Support for custom logos.
 function reorg_custom_logo_setup() {
     $defaults = array(
@@ -43,11 +33,13 @@ function reorg_custom_logo_setup() {
     );
     add_theme_support('custom-logo');
 }
+add_action('after_setup_theme', 'reorg_custom_logo_setup');
 
-add_actions('after_setup_theme', array(
-    'reorg_custom_logo_setup',
-    'reorg_register_nav_menus'
-));
+// Support for featured images on all post types.
+function reorg_post_thumbnails_setup() {
+    add_theme_support('post-thumbnails');
+}
+add_action('after_setup_theme', 'reorg_post_thumbnails_setup');
 
 // Load stylesheets.
 function reorg_add_theme_scripts() {

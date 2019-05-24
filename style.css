@@ -13,6 +13,34 @@ Text Domain: reorg
 Tags: right-sidebar
 */
 
+/**
+ * Style Book
+ *
+ * Background:
+ *  White
+ *
+ * Text:
+ *  Headers:
+ *      Nexa Bold
+ *      Black
+ *      xx-large
+ *
+ *  Body:
+ *      Nexa
+ *      Black
+ *
+ * Links:
+ *  Normal:
+ *      #084974
+ *  Hover:
+ *      #119848
+ *  Active:
+ *      #95c93e
+ *
+ * Borders:
+ *      #119848
+ */
+
 /*
  * Fonts
  */
@@ -41,7 +69,7 @@ html {
 body {
     max-width: 1280px;
     margin: 0 auto;
-    background: #fff;
+    background-color: #fff;
     color: #000;
 }
 
@@ -90,6 +118,7 @@ h1 > a, h2 > a, h3 > a, h4 > a, h5 > a, h6 > a {
  */
 #main-header {
     width: 100%;
+    background: rgba(255, 255, 255, 0.85);
 }
 
 .custom-logo {
@@ -107,7 +136,7 @@ h1 > a, h2 > a, h3 > a, h4 > a, h5 > a, h6 > a {
 
 .nav-menu-container {
     width: 100%;
-    margin: 0.5rem;
+    padding: 0.5rem;
     display: flex;
     flex-flow: row nowrap;
     font-family: 'nexa';
@@ -136,9 +165,8 @@ h1 > a, h2 > a, h3 > a, h4 > a, h5 > a, h6 > a {
 }
 
 .nav-menu > .menu-item > a {
-    font-size: large;
+    font-size: x-large;
     line-height: 4.5rem;
-    border-bottom: 1px solid white;
 }
 
 .menu-item:hover > a {
@@ -160,18 +188,23 @@ h1 > a, h2 > a, h3 > a, h4 > a, h5 > a, h6 > a {
     text-decoration: none;
 }
 
+.nav-menu > .menu-item-has-children {
+    position: relative;
+}
+
 .sub-menu {
     display: none;
     position: absolute;
+    min-width: 12rem;
     top: 4rem;
     right: 0;
-    height: 5rem;
     margin: 0;
     padding: 0;
-    border-top: 1px solid #95c93e;
-    flex-flow: row-reverse;
+    flex-flow: column;
     list-style-type: none;
     text-align: center;
+    border-top: 1px solid #119848;
+    box-shadow: 3px 3px 3px black;
 }
 
 .nav-menu > .menu-item:nth-child(1) {
@@ -179,8 +212,13 @@ h1 > a, h2 > a, h3 > a, h4 > a, h5 > a, h6 > a {
     text-align: right;
 }
 
+.sub-menu > .menu-item {
+    background-color: white;
+}
+
 .sub-menu > .menu-item > a {
     padding: 0.75rem;
+    font-size: larger;
 }
 
 .nav-home:focus,
@@ -198,7 +236,46 @@ a:focus ~ .sub-menu,
     display: flex;
 }
 
-.sub-menu > .menu-item > a {
+.actions-menu {
+    display: inline-block;
+    margin: 1rem auto;
+    padding: 0;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: x-large;
+}
+
+.actions-menu > .menu-item {
+    display: inline-block;
+}
+
+/*body.home {
+     url('img/meeting_audience.jpg') no-repeat;
+    background-size: 100% auto;
+}*/
+
+#main.front-page {
+    padding: 0;
+}
+
+.front-page .page-header {
+    margin: 325px 0 0;
+}
+
+.description-container {
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-flow: column-reverse nowrap;
+    padding: 0 1rem;
+}
+
+.site-description {
+    padding: 5px;
+    background-color: rgba(255, 255, 255, 0.65);
+    border-radius: 5px;
+    box-shadow: 0 0 3px 3px rgba(255, 255, 255, 0.65);
+    font-size: large;
+    font-style: italic;
 }
 
 .take-action-widget > ul {
@@ -228,8 +305,8 @@ a:focus ~ .sub-menu,
 .page-header > h1,
 .single > .post-header > h1 {
     margin-bottom: 0.25rem;
-    border-bottom: 3px solid #95c93e;
-    border-image: linear-gradient(to right, white, #95c93e 25% 75%, white) 5;
+    border-bottom: 3px solid #119848;
+    border-image: linear-gradient(to right, white, #119848 25% 75%, white) 5;
 }
 
 .back-to-list {
@@ -247,7 +324,7 @@ a:focus ~ .sub-menu,
 
 .post-list > .post {
     border-bottom: 1px solid #95c93e;
-    border-image: linear-gradient(to right, white, #95c93e 25% 75%, white) 5;
+    border-image: linear-gradient(to right, white, #119848 25% 75%, white) 5;
 }
 
 .post-header {
@@ -257,6 +334,50 @@ a:focus ~ .sub-menu,
 
 .post-header > h1 {
     margin-bottom: 0;
+}
+
+.feature-image-container {
+    position: absolute;
+    top: 112px;
+    left: 0;
+    right: 0;
+    height: 300px;
+    z-index: -100;
+    background: white no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+
+.feature-image-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.feature-image-container > img {
+    width: 100%;
+}
+
+.feature-image-container ~ .post-title-container {
+    position: relative;
+    height: 100%;
+}
+
+.feature-image-container ~ .post-title-container > h1 {
+    position: absolute;
+    margin: 0;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    font-size: 400%;
+    color: #e6e6e6;
+    border-bottom: none;
+
 }
 
 .single .post-main {
@@ -352,9 +473,9 @@ a:focus ~ .sub-menu,
  */
 #main-footer {
     max-width: 1000px;
-    margin: 0 auto; 
+    margin: 0 auto;
     padding: 1em;
-    font-size: x-small;
+    font-size: small;
     background: #444;
     color: #aaa;
 }
@@ -432,4 +553,55 @@ a:active {
     -webkit-transition: 0.3s ease;
     -o-transition: 0.3s ease;
     transition: 0.3s ease;
+}
+
+/*
+ * Full-width, no title layout.
+ */
+#main.full-width {
+    max-width: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    padding-bottom: 0;
+}
+
+#main-header.full-width {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+}
+
+.full-width .page-header {
+    margin: 0;
+}
+
+.feature-image-and-desc {
+    position: relative;
+    min-height: 20rem;
+    background-color: black;
+    text-align: center;
+}
+
+.feature-image-and-desc > img {
+    max-width: 100%;
+    height: auto;
+}
+
+.feature-image-mask {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-flow: column-reverse nowrap;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.full-width .description-container {
+    max-width: 40rem;
+    margin: 1rem auto;
 }
