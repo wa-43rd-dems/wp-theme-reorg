@@ -1,5 +1,5 @@
 <?php get_header(); ?>
-<main id="main" class="site-main single">
+<main id="main" class="single <?php echo $main_classes; ?>">
     <?php
     // Load posts loop.
     while (have_posts()) {
